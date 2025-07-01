@@ -25,3 +25,36 @@ SELECT
 FROM
     Booking
 INNER JOIN User ON Booking.user_id = User.id;
+
+# 🔍 Subqueries – ALX Airbnb Database
+
+## 🎯 Objective
+
+Demonstrate use of both **non-correlated** and **correlated subqueries** in SQL.
+
+---
+
+## 🧾 Included Queries
+
+### 1️⃣ Non-correlated Subquery
+
+**Task:** Find properties with an average rating greater than 4.0
+
+```sql
+SELECT
+    property.id,
+    property.title,
+    property.location
+FROM
+    property
+WHERE
+    property.id IN (
+        SELECT
+            review.property_id
+        FROM
+            review
+        GROUP BY
+            review.property_id
+        HAVING
+            AVG(review.rating) > 4.0
+    );
