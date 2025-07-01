@@ -46,3 +46,12 @@ SELECT
 FROM
     User
 FULL OUTER JOIN Booking ON User.id = Booking.user_id;
+-- 2. LEFT JOIN: All properties and their reviews (including properties with no reviews)
+SELECT
+    Property.id AS property_id,
+    Property.title,
+    Review.rating,
+    Review.comment
+FROM
+    Property
+LEFT JOIN Review ON Property.id = Review.property_id;
