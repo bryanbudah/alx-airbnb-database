@@ -1,57 +1,33 @@
--- 🔄 INNER JOIN: Bookings with the users who made them
+-- 🔄 INNER JOIN: Retrieve all bookings and the users who made them
 SELECT
-    Booking.id AS booking_id,
-    Booking.start_date,
-    Booking.end_date,
-    User.name AS user_name,
-    User.email
+    booking.id AS booking_id,
+    booking.start_date,
+    booking.end_date,
+    "user".name AS user_name,
+    "user".email
 FROM
-    Booking
-INNER JOIN User ON Booking.user_id = User.id;
+    booking
+INNER JOIN "user" ON booking.user_id = "user".id;
 
--- 🔄 LEFT JOIN: Properties with their reviews (include properties with no reviews)
-SELECT
-    Property.id AS property_id,
-    Property.title,
-    Review.rating,
-    Review.comment
-FROM
-    Property
-LEFT JOIN Review ON Property.id = Review.property_id;
 
--- 🔄 FULL OUTER JOIN: All users and all bookings (even unmatched ones)
+-- 🔄 LEFT JOIN: Retrieve all properties and their reviews (including properties with no reviews)
 SELECT
-    User.id AS user_id,
-    User.name AS user_name,
-    Booking.id AS booking_id,
-    Booking.start_date,
-    Booking.end_date
+    property.id AS property_id,
+    property.title,
+    review.rating,
+    review.comment
 FROM
-    User
-FULL OUTER JOIN Booking ON User.id = Booking.user_id;
+    property
+LEFT JOIN review ON property.id = review.property_id;
+
+
+-- 🔄 FULL OUTER JOIN: Retrieve all users and all bookings, even unmatched ones
 SELECT
-    Property.id AS property_id,
-    Property.title,
-    Review.rating,
-    Review.comment
+    "user".id AS user_id,
+    "user".name AS user_name,
+    booking.id AS booking_id,
+    booking.start_date,
+    booking.end_date
 FROM
-    Property
-LEFT JOIN Review ON Property.id = Review.property_id;
-SELECT
-    User.id AS user_id,
-    User.name AS user_name,
-    Booking.id AS booking_id,
-    Booking.start_date,
-    Booking.end_date
-FROM
-    User
-FULL OUTER JOIN Booking ON User.id = Booking.user_id;
--- 2. LEFT JOIN: All properties and their reviews (including properties with no reviews)
-SELECT
-    Property.id AS property_id,
-    Property.title,
-    Review.rating,
-    Review.comment
-FROM
-    Property
-LEFT JOIN Review ON Property.id = Review.property_id;
+    "user"
+FULL OUTER JOIN booking ON "user".id = booking.user_id;
