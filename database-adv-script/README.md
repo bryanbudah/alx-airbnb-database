@@ -79,7 +79,7 @@ SELECT
     COUNT(booking.id) AS total_bookings
 FROM
     "user"
-LEFT JOIN booking ON "user".id = booking.user_id
+LEFT JOIN booking ON "user".id = booking.user_i
 GROUP BY
     "user".id,
     "user".name
