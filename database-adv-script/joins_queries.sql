@@ -31,3 +31,13 @@ SELECT
 FROM
     "user"
 FULL OUTER JOIN booking ON "user".id = booking.user_id;
+-- Retrieve all properties and their reviews (if any), including properties without reviews
+SELECT 
+    p.property_id,
+    p.title AS property_title,
+    r.review_id,
+    r.rating,
+    r.comment
+FROM properties p
+LEFT JOIN reviews r ON p.property_id = r.property_id
+ORDER BY p.property_id;
